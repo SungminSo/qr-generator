@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  qr:
+    container_name: qr-generator
+    image: qr-generator
+    tty: true
+    ports:
+      - "0.0.0.0:3506:3506"
+    environment:
+      - MONGO_DB_HOST=db
+
+  db:
+    container_name: poster-mongodb
+    image: mongo
+    volumes:
+      - ./mongo-volume:/data/db
+    ports:
+      - "0.0.0.0:27017:27017"
